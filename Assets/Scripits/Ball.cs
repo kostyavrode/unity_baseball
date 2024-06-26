@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
     }
     private void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += -transform.forward * speed * Time.deltaTime;
         wastedtime += Time.deltaTime;
         if (wastedtime>livetime)
         {
@@ -30,7 +30,9 @@ public class Ball : MonoBehaviour
             GameManager.instance.AddScore();
             StartCoroutine(WaitToDeath());
             rb.useGravity = enabled;
-            rb.AddForce(new Vector3(Random.Range(-1,1), Random.Range(0.5f, 1), Random.Range(-1f, -0.5f)) *600);
+            rb.isKinematic = false;
+            rb.AddForce(new Vector3(Random.Range(-1,1), Random.Range(0.5f, 1), Random.Range(1f, 0.5f)) *600);
+            Debug.Log("Contact");
         }
     }
     private IEnumerator WaitToDeath()

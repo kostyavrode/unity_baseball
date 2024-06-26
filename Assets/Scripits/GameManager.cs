@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static Action onGameStarted;
     public BallSpawner spawner;
+    public Player player;
     private bool isGameStarted;
     private float currentTimeScale;
     private int score;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         UIManager.instance.ShowTime(gameplayTimer.ToString());
         spawner.enabled = true;
+        //player.isCanAttack = true;
     }
     public void PauseGame()
     {

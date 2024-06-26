@@ -6,8 +6,11 @@ public class BallSpawner : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject ballPrefab;
+    public Animator animator;
     private float wastedTime;
     public float delay;
+    public float delayAnimation;
+    private bool isAnimationPlayed;
     public void Update()
     {
         wastedTime += Time.deltaTime;
@@ -15,10 +18,17 @@ public class BallSpawner : MonoBehaviour
         {
             SpawnNewBall();
             wastedTime = 0;
+            isAnimationPlayed = false;
+        }
+        else if (wastedTime>=delayAnimation && !isAnimationPlayed)
+        {
+            animator.SetTrigger("pitch");
+            isAnimationPlayed = true;
         }
     }
     public void SpawnNewBall()
     {
-        Instantiate(ballPrefab, spawnPoint);
+        GameObject newBall=Instantiate(ballPrefab);
+        newBall.transform.position = spawnPoint.position;
     }
 }
