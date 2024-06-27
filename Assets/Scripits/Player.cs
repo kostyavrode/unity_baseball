@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     private float cd = 3;
     public bool isCanAttack;
+    public AudioSource audio;
     private void Awake()
     {
         collider.enabled = false;
@@ -24,12 +25,19 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 StartCoroutine(WaitToCD());
-                collider.enabled = true;
-                StartCoroutine(WaitToDeActivateCollider());
+                StartCoroutine(WaitToActivateCollider());
+                
                 animator.SetTrigger("strike");
                 isCanAttack = false;
+                StartCoroutine(WaitToAudio());
             }
         }
+    }
+    private IEnumerator WaitToActivateCollider()
+    {
+        yield return new WaitForSeconds(0.3f);
+        collider.enabled = true;
+        StartCoroutine(WaitToDeActivateCollider());
     }
     private IEnumerator WaitToDeActivateCollider()
     {
@@ -40,5 +48,10 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         isCanAttack = true;
+    }
+    private IEnumerator WaitToAudio()
+    {
+        yield return new WaitForSeconds(0.5f);
+        audio.Play();
     }
 }
