@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float time;
     private float wastedTime;
     public float gameplayTimer = 60;
+    public ParticleSystem effect;
     private void Awake()
     {
         instance = this;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         score += 1;
         UIManager.instance.ShowScore(score.ToString());
+        effect.Play();
     }
     public void StartGame()
     {
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", score);
             PlayerPrefs.Save();
         }
+        PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") + score);
     }
     public bool IsGameStarted()
     {
