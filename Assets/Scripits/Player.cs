@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     }
     private IEnumerator WaitToCD()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         isCanAttack = true;
     }
     private IEnumerator WaitToAudio()

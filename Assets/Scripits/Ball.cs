@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     public float livetime;
     private float wastedtime;
     public Rigidbody rb;
+    private bool isVibrate;
     private void Awake()
     {
         speed = Random.Range(minspeed, maxspeed);
@@ -21,7 +22,11 @@ public class Ball : MonoBehaviour
         if (wastedtime>livetime)
         {
             StartCoroutine(WaitToDeath());
-        }    
+        }
+        if (isVibrate)
+        {
+            Handheld.Vibrate();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -33,11 +38,18 @@ public class Ball : MonoBehaviour
             rb.isKinematic = false;
             rb.AddForce(new Vector3(Random.Range(-1,1), Random.Range(0.5f, 1), Random.Range(1f, 0.5f)) *600);
             Debug.Log("Contact");
+            StartCoroutine(WaitToVibrate());
         }
     }
     private IEnumerator WaitToDeath()
     {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
+    }
+    private IEnumerator WaitToVibrate()
+    {
+        isVibrate = true;
+        yield return new WaitForSeconds(0.5f);
+        isVibrate = false;
     }
 }
