@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject soundButtonOn;
     [SerializeField] private GameObject soundButtonOff;
     [SerializeField] private AudioSource audioSource;
-    private UniWebView uniWebView;
     [SerializeField] public GameObject[] elements;
     [SerializeField] private GameObject blackWindow;
     [SerializeField] private AudioSource source;
@@ -117,14 +116,5 @@ public class UIManager : MonoBehaviour
     public void ShowBestScore(string bestScore)
     {
         bestScoreBar.text = bestScore;
-    }
-    public void ShowPrivacy(string url)
-    {
-        var webviewObject = new GameObject("UniWebview");
-        uniWebView = webviewObject.AddComponent<UniWebView>();
-        uniWebView.Frame = new Rect(0, 0, Screen.width, Screen.height);
-        uniWebView.SetShowToolbar(true, false, true, true);
-        uniWebView.Load(url);
-        uniWebView.Show();
     }
 }
