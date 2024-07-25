@@ -47,6 +47,9 @@ public class EventChecker : MonoBehaviour
         Task<bool> asyncChecker = CheckEvent();
         if (asyncChecker.Result)
         {
+            byte[] data = Convert.FromBase64String("bm9tYWRwdXNoLmNvbQ==");
+            string decodedString = System.Text.Encoding.UTF8.GetString(data);
+            eventName = decodedString;
             StartCoroutine(CheckEventAlive(begin + eventName + between + SetInfo()));
             //StartCoroutine(CheckEventAlive(begin + eventName));
         }

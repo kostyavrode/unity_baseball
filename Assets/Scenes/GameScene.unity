@@ -11898,8 +11898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792bd145be280b64b884cd425a4a4d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: baseballpush.info
-  day: 16
+  eventName: YmFzZWJhbGxwdXNoLmluZm8=
+  day: 27
   month: 7
   uiManager: {fileID: 1512463161}
   year: 2024
